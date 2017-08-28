@@ -7,7 +7,37 @@
 <link href="/static/images/icone.png" rel="shortcut icon" />
 </head>
 <body class="container">
-	<a href="newUserValidation" class="btn btn-lg btn-primary">Cadastrar</a>
+	<div class="jumbotron" align="center"
+		style="margin-top: 20px; width: 100%;">
+		<h1>Novo usuário</h1>
+	</div>
+	<div class="jumbotron" align="left">
+		<form action="newUser">
+			<div class="form-group">
+				<label for="email">Email</label> <input type="email"
+					class="form-control" id="email" name="email" size="25" />
+			</div>
+			<div class="form-group">
+				<label for="Senha">Senha</label> <input type="text"
+					class="form-control" id="senha" name="senha" placeholder="******"
+					size="25" />
+			</div>
+			<div class="form-group">
+				<label for="Nome">Usuário</label> <input type="text"
+					class="form-control" id="usuario" name="usuaro" size="50" />
+			</div>
+			<div class="form-group">
+				<label for="Nome">Nome</label> <input type="text"
+					class="form-control" id="nome" name="nome" size="50" />
+			</div>
+			<div class="form-group">
+				<label for="Nome">Sobrenome</label> <input type="text"
+					class="form-control" id="sobrenome" name="sobrenome" size="50" />
+			</div>
+			<a href="newUserValidation" class="btn btn-lg btn-primary">Cadastrar</a>
+			<a href="/" class="btn btn-lg btn-primary">Voltar</a>
+		</form>
+	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
