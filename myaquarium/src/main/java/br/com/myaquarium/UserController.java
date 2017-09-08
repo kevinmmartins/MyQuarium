@@ -3,7 +3,11 @@ package br.com.myaquarium;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.myaquarium.exceptions.UserException;
+import br.com.myaquarium.exceptions.enuns.UserExceptions;
 import br.com.myaquarium.model.User;
 import br.com.myaquarium.repository.UserRepository;
 import org.apache.log4j.Logger;
@@ -20,22 +24,23 @@ public class UserController {
 		return "index";
 	}
 
-	@RequestMapping("/newUser")
+	@RequestMapping("newUser")
 	public String newUser() {
 		return "newUser";
 	}
 
-	@RequestMapping("/newUserValidation")
-	public String newUserValdation() {
+	@RequestMapping(value = "newUser", method = RequestMethod.POST)
+	public String saveNewUser(@RequestParam("email") String email, @RequestParam("senha") String password,
+			@RequestParam("usuario") String user, @RequestParam("nome") String name,
+			@RequestParam("sobrenome") String lastName) throws UserException {
 
-		User user = new User();
-		user.setUser("kmatheus");
-		user.setEmail("teste@test");
-		user.setIsActive(Boolean.FALSE);
-		user.setFirstName("Kevin");
-		user.setLastName("Martins");
-		user.setPassword("teste");
-		userRepository.save(user);
+		try {
+			User newUser = new User(email, password, user, name, lastName);
+			userRepository.save(newUser);
+		} catch (Exception e) {
+			logger.error("Cannot create new user", e);
+			throw new UserException(UserExceptions.CANNOT_CREATE_NEW_USER, e);
+		}
 		return "index";
 	}
 }

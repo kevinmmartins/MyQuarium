@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>MyQuarium</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/static/images/icone.png" rel="shortcut icon" />
+<link href="images/icone.png" rel="shortcut icon" />
 </head>
 <body class="container">
 	<div>
@@ -13,7 +13,7 @@
 			id="aquariumLogo"></div>
 		<div>
 			<div class="jumbotron" style="height: 360px; width: 38%;">
-				<form action="user">
+				<form action="doLogin" method="post">
 					<div class="form-group">
 						<label for="nome">Usuário</label> <input type="email"
 							class="form-control" id="email" name="email" size="25" />
@@ -23,8 +23,8 @@
 							class="form-control" id="senha" name="senha" placeholder="******"
 							size="25" />
 					</div>
-					<a href="login" class="btn btn-lg btn-primary">Login</a> <a
-						href="newUser" class="btn btn-lg btn-primary">Novo usuário</a>
+					<button type="submit" class="btn btn-lg btn-primary">Login</button>
+					<a href="newUser" class="btn btn-lg btn-primary">Novo usuário</a>
 				</form>
 			</div>
 			<div class="jumbotron" style="height: 360px; width: 60%;">

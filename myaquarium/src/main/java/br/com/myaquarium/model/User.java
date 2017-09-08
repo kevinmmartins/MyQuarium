@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity(name = "user")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	/**
 	 * Always change after make some change
@@ -20,18 +23,32 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String firstName;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String lastName;
-	@Column(unique=true,nullable=false)
+	@Column(unique = true, nullable = false)
 	private String email;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String password;
-	private Boolean isActive=false;
-	@Column(nullable=false, unique=true)
+	@Transient
+	private Boolean isActive = false;
+	@Column(nullable = false, unique = true)
 	private String user;
-	private HashSet<Aquarium> aquariumList= new HashSet<Aquarium>();
+	@OneToMany(mappedBy="userId", cascade=CascadeType.ALL)
+	private Collection<Aquarium> aquariumList = new HashSet<Aquarium>();
+
+	public User() {
+
+	}
+
+	public User(String email, String password, String user, String firstName, String lastName) {
+		this.email = email;
+		this.password = password;
+		this.user = user;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
 	public Long getId() {
 		return id;
@@ -96,7 +113,6 @@ public class User implements Serializable{
 	public void setUser(String user) {
 		this.user = user;
 	}
-
 
 	@Override
 	public String toString() {

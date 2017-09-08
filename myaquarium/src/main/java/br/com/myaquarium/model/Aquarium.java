@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-@Entity(name="aquarium")
-public class Aquarium implements Serializable{
+@Entity(name = "aquarium")
+public class Aquarium implements Serializable {
 
 	/**
 	 * Always change after make some change
@@ -19,31 +23,51 @@ public class Aquarium implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(unique=true, nullable=false)
+	@Column(unique = true, nullable = false)
 	private String aquariumName;
-	private HashSet<AquariumData> aquariumData= new HashSet<AquariumData>();
+	@OneToMany(mappedBy = "aquariumId", cascade = CascadeType.ALL)
+	private Collection<AquariumData> aquariumData = new HashSet<AquariumData>();
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	private User userId;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getAquariumName() {
 		return aquariumName;
 	}
+
 	public void setAquariumName(String aquariumName) {
 		this.aquariumName = aquariumName;
 	}
+
 	public Collection<AquariumData> getAquariumData() {
 		return aquariumData;
 	}
+
 	public void setAquariumData(HashSet<AquariumData> aquariumData) {
 		this.aquariumData = aquariumData;
 	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
 		return "Aquarium [id=" + id + ", aquariumName=" + aquariumName + ", aquariumData=" + aquariumData + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,6 +77,7 @@ public class Aquarium implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,6 +104,5 @@ public class Aquarium implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }
