@@ -12,6 +12,7 @@ import br.com.myaquarium.exceptions.UserException;
 import br.com.myaquarium.model.User;
 import br.com.myaquarium.repository.UserRepository;
 import br.com.myaquarium.security.PasswordSecurity;
+import br.com.myaquarium.validations.UserValidations;
 
 @Service
 public class UserService {
@@ -23,13 +24,11 @@ public class UserService {
 
 	public void saveNewUser(String email, String password, String user, String name, String lastName)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, UserException {
+
+		new UserValidations(userRepository, email, password, user, name, lastName).makeValidations();
 		User newUser = new User(email, PasswordSecurity.transformPassword(password), user, name, lastName);
 		userRepository.save(newUser);
-		try {
-			EmailSender.sendEmail(name, email);
-		} catch (UserException e) {
-			logger.error("Cannot send the email to new User");
-		}
+		EmailSender.sendEmail(name, email);
 
 	}
 

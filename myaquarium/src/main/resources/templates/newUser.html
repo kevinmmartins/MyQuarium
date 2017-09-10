@@ -15,29 +15,44 @@
 			<h2>Novo usuário</h2>
 		</div>
 		<form action="newUser" method="post">
+			<input type="hidden" />
 			<div class="form-group">
 				<label for="email">Email</label> <input type="email"
 					class="form-control" id="email" name="email" size="25" />
+				<p th:if="${EMAIL_ALREADY_EXISTS}" class="validation-error"
+					th:text="${EMAIL_ALREADY_EXISTS}">...</p>
+				<p th:if="${EMAIL_CANNOT_BE_NULL}" class="validation-error"
+					th:text="${EMAIL_CANNOT_BE_NULL}">...</p>
 			</div>
 			<div class="form-group">
 				<label for="Senha">Senha</label> <input type="password"
-					class="form-control" id="password" name="password" placeholder="******"
-					size="25" />
+					class="form-control" id="password" name="password"
+					placeholder="******" size="25" />
+				<p th:if="${PASSWORD_CANNOT_BE_NULL}" class="validation-error"
+					th:text="${PASSWORD_CANNOT_BE_NULL}">...</p>
 			</div>
 			<div class="form-group">
 				<label for="Nome">Usuário</label> <input type="text"
 					class="form-control" id="user" name="user" size="50" />
+				<p th:if="${USER_ALREADY_EXISTS}" class="validation-error"
+					th:text="${USER_ALREADY_EXISTS}">...</p>
+				<p th:if="${USER_CANNOT_BE_NULL}" class="validation-error"
+					th:text="${USER_CANNOT_BE_NULL}">...</p>
 			</div>
 			<div class="form-group">
 				<label for="Nome">Nome</label> <input type="text"
 					class="form-control" id="name" name="name" size="50" />
+				<p th:if="${NAME_CANNOT_BE_NULL}" class="validation-error"
+					th:text="${NAME_CANNOT_BE_NULL}">...</p>
 			</div>
 			<div class="form-group">
 				<label for="Nome">Sobrenome</label> <input type="text"
 					class="form-control" id="lastName" name="lastName" size="50" />
+				<p th:if="${LASTNAME_CANNOT_BE_NULL}" class="validation-error"
+					th:text="${LASTNAME_CANNOT_BE_NULL}">...</p>
 			</div>
 			<button type="submit" class="btn btn-success">Cadastrar</button>
-			<a href="/"  class="btn btn-success">Voltar</a>
+			<a href="/" class="btn btn-success">Voltar</a>
 		</form>
 	</div>
 	<script

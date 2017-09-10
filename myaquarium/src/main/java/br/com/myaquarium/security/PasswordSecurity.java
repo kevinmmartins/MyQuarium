@@ -28,7 +28,7 @@ public class PasswordSecurity {
 
 		if (password == null || password.isEmpty()) {
 			logger.error("Password cannot be null");
-			throw new UserException(UserExceptions.PASSWORD_CAN_NOT_BE_NULL);
+			throw new UserException(UserExceptions.PASSWORD_CANNOT_BE_NULL);
 		}
 
 		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
