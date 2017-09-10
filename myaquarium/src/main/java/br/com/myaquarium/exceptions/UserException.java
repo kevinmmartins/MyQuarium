@@ -1,7 +1,11 @@
 package br.com.myaquarium.exceptions;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import br.com.myaquarium.exceptions.enuns.UserExceptions;
 
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Some exception happens")
 public class UserException extends Exception {
 
 	/**
@@ -10,7 +14,11 @@ public class UserException extends Exception {
 	private static final long serialVersionUID = 7364445393489962584L;
 
 	public UserException(UserExceptions cannotCreateNewUser, Exception e) {
-		super(cannotCreateNewUser.toString(),e);
+		super(cannotCreateNewUser.toString(), e);
+	}
+
+	public UserException(UserExceptions cannotCreateNewUser) {
+		super(cannotCreateNewUser.toString());
 	}
 
 }

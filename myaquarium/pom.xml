@@ -42,5 +42,10 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>1.4.0.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>br.com.myaquarium.invite</groupId>
+			<artifactId>inveteManager</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

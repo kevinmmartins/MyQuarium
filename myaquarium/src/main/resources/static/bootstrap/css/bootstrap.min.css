@@ -2084,7 +2084,7 @@ pre code {
 	background-image: url(../../images/peixe.png) !important;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 	height: 100%;
 }
 
@@ -7541,6 +7541,15 @@ a.badge:focus, a.badge:hover {
 	background: rgba(214, 244, 251, 0.8);
 	padding-bottom: 5px;
 	margin-bottom: 5px;
+}
+
+.conteinerfull {
+	padding-top: 40px;
+	padding-top: auto;
+	padding-bottom: auto;
+	color: inherit;
+	padding-bottom: auto;
+	margin-bottom: auto;
 }
 
 .jumbotron .h1, .jumbotron h1 {
