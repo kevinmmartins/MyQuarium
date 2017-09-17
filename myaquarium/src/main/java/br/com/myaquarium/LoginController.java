@@ -1,5 +1,7 @@
 package br.com.myaquarium;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,6 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.myaquarium.exceptions.LoginException;
+import br.com.myaquarium.model.User;
 import br.com.myaquarium.service.LoginService;
 
 @Controller
@@ -25,10 +28,11 @@ public class LoginController {
 
 	@RequestMapping(value = "doLogin", method = RequestMethod.POST)
 	public String doLogin(@RequestParam("user") String user, @RequestParam("password") String password, Model model,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, HttpSession session) {
 
 		try {
-			loginService.doLogin(user, password);
+			User loggedUser = loginService.doLogin(user, password);
+			session.setAttribute("user", loggedUser);
 		} catch (LoginException e) {
 			logger.error("Cannot do login", e);
 			redirectAttributes.addFlashAttribute(e.getException().toString(), e.getException().getMessageDescription());
@@ -38,7 +42,7 @@ public class LoginController {
 			return "redirect:/500.html";
 		}
 
-		return "newUser";
+		return "redirect:aquarium/" + user;
 	}
 
 	@RequestMapping("loginError")

@@ -39,4 +39,8 @@ public class LoginValidations implements Validator {
 
 	}
 
+	public User getValidUser() {
+		return validUser;
+	}
+	
 }

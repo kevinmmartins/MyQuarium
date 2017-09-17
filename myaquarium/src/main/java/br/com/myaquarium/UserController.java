@@ -44,7 +44,7 @@ public class UserController {
 	 * @return
 	 * @throws UserException
 	 */
-	@RequestMapping(value = "newUser", method = RequestMethod.POST)
+	@RequestMapping(value = "newUser", method = RequestMethod.PUT)
 	public String saveNewUser(@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("user") String user, @RequestParam("name") String name,
 			@RequestParam("lastName") String lastName, RedirectAttributes redirectAttributes, Model model)

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.myaquarium.exceptions.LoginException;
 import br.com.myaquarium.exceptions.UserException;
+import br.com.myaquarium.model.User;
 import br.com.myaquarium.repository.UserRepository;
 import br.com.myaquarium.validations.LoginValidations;
 
@@ -20,11 +21,12 @@ public class LoginService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void doLogin(String user, String password)
+	public User doLogin(String user, String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, LoginException, UserException {
 
-		new LoginValidations(userRepository, user, password).makeValidations();
-
+		LoginValidations loginValidations = new LoginValidations(userRepository, user, password);
+		loginValidations.makeValidations();
+		return loginValidations.getValidUser();
 	}
 
 }
