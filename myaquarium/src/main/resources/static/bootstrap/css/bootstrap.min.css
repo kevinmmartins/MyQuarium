@@ -7552,6 +7552,16 @@ a.badge:focus, a.badge:hover {
 	margin-bottom: 5px;
 }
 
+.jumbotronFull {
+	padding-top: 120px;
+	padding-bottom: 80px;
+	margin-bottom: 45px;
+	color: inherit;
+	background: rgba(214, 244, 251, 0.8);
+	padding-bottom: 50px;
+	margin-bottom: 5px;
+}
+
 .conteinerfull {
 	padding-top: 40px;
 	padding-top: auto;

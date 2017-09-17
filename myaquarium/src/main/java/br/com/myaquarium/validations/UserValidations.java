@@ -4,7 +4,7 @@ import br.com.myaquarium.exceptions.UserException;
 import br.com.myaquarium.exceptions.enuns.UserExceptions;
 import br.com.myaquarium.repository.UserRepository;
 
-public class UserValidations {
+public class UserValidations implements Validator {
 
 	private UserRepository userRepository;
 	private String email;

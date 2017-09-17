@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>MyQuarium</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="images/icone.png" rel="shortcut icon" />
+</head>
+<body class="container">
+	<div class="conteinerfull">
+		<div class="jumbotron" align="center"
+			style="margin-top: 20px; height: 240px; width: 100%;"
+			id="aquariumLogo"></div>
+
+		<div class="jumbotronFull" align="center">
+			<form action="doLogin" method="post"
+				style="margin-top: 20px;width: 100%;">
+				<div class="form-group">
+					<label for="Name">Usuário</label> <input type="text"
+						class="form-control" id="user" name="user" size="25" />
+					<p th:if="${USER_NOT_FOUND}" class="validation-error"
+						th:text="${USER_NOT_FOUND}">...</p>
+				</div>
+				<div class="form-group">
+					<label for="Password">Senha</label> <input type="password"
+						class="form-control" id="password" name="password"
+						placeholder="******" size="25" />
+					<p th:if="${INVALID_PASSWORD}" class="validation-error"
+						th:text="${INVALID_PASSWORD}">...</p>
+				</div>
+				<button type="submit" class="btn btn-lg btn-primary">Login</button>
+				<a href="newUser" class="btn btn-lg btn-primary">Novo usuário</a>
+			</form>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -35,7 +35,7 @@ public class User implements Serializable {
 	private Boolean isActive = false;
 	@Column(nullable = false, unique = true)
 	private String user;
-	@OneToMany(mappedBy="userId", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
 	private Collection<Aquarium> aquariumList = new HashSet<Aquarium>();
 
 	public User() {
@@ -48,6 +48,7 @@ public class User implements Serializable {
 		this.user = user;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.isActive = Boolean.TRUE;
 	}
 
 	public Long getId() {
