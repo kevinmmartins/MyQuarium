@@ -24,7 +24,7 @@ public class AquariumController {
 		return "index";
 	}
 
-	@RequestMapping(value = "aquarium/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "aquarium/{username:.+}", method = RequestMethod.GET)
 	@ResponseBody
 	public String managePage(@PathVariable("username") String username, HttpSession session) {
 
@@ -36,7 +36,7 @@ public class AquariumController {
 		}
 		if (!user.getUser().equals(username)) {
 			logger.info("Invalid username, session user has the username: " + user.getUser());
-			return "index";
+			return username + " is not the session user !";
 		}
 
 		return "Welcome " + username;
