@@ -3,11 +3,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>MyQuarium</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="http://localhost:9000/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link href="images/icone.png" rel="shortcut icon" />
 </head>
 <body class="container">
-	<h1>Aquarium List</h1>
+	<div class="jumbotron" align="left" style="width: 100%;">
+		<div align="center"
+			style="margin-top: 2px; height: 50px; width: 100%;">
+			<h2 class="welcome">Bem vindo</h2>
+			<h2 class="welcome" th:text="${name}"></h2>
+			<h2 class="welcome">!</h2>
+			<div align="right" class="welcome">
+				<form action="doLogoff" method="post">
+					<button class="btn btn-danger" type="submit">Logoff</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="jumbotron" align="center"
+		style="margin-top: 5px; width: 100%;">
+		<div align="center">
+			<h2>Minhas instâncias</h2>
+		</div>
+	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>

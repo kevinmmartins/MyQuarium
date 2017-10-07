@@ -26,6 +26,16 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+	/**
+	 * Do a user login
+	 * 
+	 * @param user
+	 * @param password
+	 * @param model
+	 * @param redirectAttributes
+	 * @param session
+	 * @return the aquarium instance page
+	 */
 	@RequestMapping(value = "doLogin", method = RequestMethod.POST)
 	public String doLogin(@RequestParam("user") String user, @RequestParam("password") String password, Model model,
 			RedirectAttributes redirectAttributes, HttpSession session) {
@@ -33,6 +43,7 @@ public class LoginController {
 		try {
 			User loggedUser = loginService.doLogin(user, password);
 			session.setAttribute("user", loggedUser);
+			logger.info("Session user added");
 		} catch (LoginException e) {
 			logger.error("Cannot do login", e);
 			redirectAttributes.addFlashAttribute(e.getException().toString(), e.getException().getMessageDescription());
