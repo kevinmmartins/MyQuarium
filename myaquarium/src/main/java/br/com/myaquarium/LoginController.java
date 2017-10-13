@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.myaquarium.enums.UserConstants;
 import br.com.myaquarium.exceptions.LoginException;
 import br.com.myaquarium.model.User;
 import br.com.myaquarium.service.LoginService;
@@ -42,6 +43,11 @@ public class LoginController {
 
 		try {
 			User loggedUser = loginService.doLogin(user, password);
+			if (session.getAttribute(UserConstants.User.getValue()) != null) {
+				logger.info("Removing session user to make a new login");
+				session.removeAttribute(UserConstants.User.getValue());
+				logger.info("Session user removed to make a new login");
+			}
 			session.setAttribute("user", loggedUser);
 			logger.info("Session user added");
 		} catch (LoginException e) {

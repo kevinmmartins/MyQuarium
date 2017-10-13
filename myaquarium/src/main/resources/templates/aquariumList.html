@@ -25,6 +25,40 @@
 		style="margin-top: 5px; width: 100%;">
 		<div align="center">
 			<h2>Minhas instâncias</h2>
+			<p th:if="${AQUARIUM_LIST_IS_EMPTY}" class="validation-error"
+				th:text="${AQUARIUM_LIST_IS_EMPTY}">...</p>
+			<table th:if="${aquariumList}" class="table table-hover">
+				<thead>
+					<tr>
+						<th>Referência do Aquário</th>
+						<th>Endpoint</th>
+					</tr>
+				</thead>
+				<tr th:each="aquario : ${aquariumList}">
+					<td><span th:text="${aquario.aquariumName}"></span></td>
+					<td><span th:text="${aquario.aquariumEndpoint}"></span></td>
+				</tr>
+			</table>
+			<form action="newAquarium" method="post">
+				<input type="hidden" />
+				<div class="form-group">
+					<label for="AquariumName">Referência do aquário</label> <input
+						type="text" class="form-control" id="aquariumName"
+						name="aquariumName" size="50" />
+					<p th:if="${AQUARIUM_NAME_CANNOT_BE_NULL}" class="validation-error"
+						th:text="${AQUARIUM_NAME_CANNOT_BE_NULL}">...</p>
+					<p th:if="${AQUARIUM_ALREADY_EXISTS}" class="validation-error"
+						th:text="${AQUARIUM_ALREADY_EXISTS}">...</p>
+				</div>
+				<div class="form-group">
+					<label for="Endpoint">MyQuarium endpoint</label> <input type="text"
+						class="form-control" id="endpoint" name="endpoint" size="100" />
+					<p th:if="${AQUARIUM_ENDPOINT_CANNOT_BE_NULL}"
+						class="validation-error"
+						th:text="${AQUARIUM_ENDPOINT_CANNOT_BE_NULL}">...</p>
+				</div>
+				<button type="submit" class="btn btn-success">Criar</button>
+			</form>
 		</div>
 	</div>
 	<script

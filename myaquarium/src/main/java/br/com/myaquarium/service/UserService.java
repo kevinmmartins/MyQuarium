@@ -3,7 +3,6 @@ package br.com.myaquarium.service;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,6 @@ import br.com.myaquarium.validations.UserValidations;
 @Service
 public class UserService {
 
-	final static Logger logger = Logger.getLogger(UserService.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -31,9 +29,9 @@ public class UserService {
 		EmailSender.sendEmail(name, email);
 
 	}
-
-	public User getUserByUsername(String userName) {
-		return userRepository.findByUser(userName);
+	
+	public void saveUser(User user) {
+		userRepository.save(user);
 	}
 
 }

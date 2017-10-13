@@ -7,6 +7,7 @@ import java.util.HashSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,9 +28,21 @@ public class Aquarium implements Serializable {
 	private String aquariumName;
 	@OneToMany(mappedBy = "aquariumId", cascade = CascadeType.ALL)
 	private Collection<AquariumData> aquariumData = new HashSet<AquariumData>();
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userId")
-	private User userId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user")
+	private User user;
+	@Column(nullable = false)
+	private String aquariumEndpoint;
+
+	public Aquarium(String aquariumName, String aquariumEndpoint, User user) {
+		this.aquariumName = aquariumName;
+		this.aquariumEndpoint = aquariumEndpoint;
+		this.user = user;
+	}
+
+	public Aquarium() {
+
+	}
 
 	public Long getId() {
 		return id;
@@ -56,11 +69,23 @@ public class Aquarium implements Serializable {
 	}
 
 	public User getUserId() {
-		return userId;
+		return user;
 	}
 
 	public void setUserId(User userId) {
-		this.userId = userId;
+		this.user = userId;
+	}
+
+	public String getAquariumEndpoint() {
+		return aquariumEndpoint;
+	}
+
+	public void setAquariumEndpoint(String aquariumEndpoint) {
+		this.aquariumEndpoint = aquariumEndpoint;
+	}
+
+	public void setAquariumData(Collection<AquariumData> aquariumData) {
+		this.aquariumData = aquariumData;
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package br.com.myaquarium.enums;
 
 public enum UserConstants {
 
-	Username("userName"),Name("name"),User("user");
+	Username("userName"), Name("name"), User("user"), AquariumList("aquariumList");
 
 	private String data;
 

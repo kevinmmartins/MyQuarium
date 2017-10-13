@@ -7,6 +7,7 @@ import java.util.HashSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -35,7 +36,7 @@ public class User implements Serializable {
 	private Boolean isActive = false;
 	@Column(nullable = false, unique = true)
 	private String user;
-	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", targetEntity=Aquarium.class, cascade= CascadeType.ALL,fetch=FetchType.EAGER)
 	private Collection<Aquarium> aquariumList = new HashSet<Aquarium>();
 
 	public User() {
