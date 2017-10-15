@@ -42,7 +42,7 @@
 					<td><span th:text="${aquario.maximumTemperature}"></span></td>
 					<td><span th:text="${aquario.minimumTemperature}"></span></td>
 					<td><a class="btn btn-info"
-						th:href="@{'/'+${aquario.user.user}+'/'+${aquario.aquariumName}}">Detalhes</a></td>
+						th:href="@{'/aquariumInstance/'+${aquario.user.user}+'/'+${aquario.id}}">Detalhes</a></td>
 				</tr>
 			</table>
 			<form action="newAquarium" method="post">
