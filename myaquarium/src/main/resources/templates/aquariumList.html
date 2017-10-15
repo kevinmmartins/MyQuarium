@@ -32,11 +32,17 @@
 					<tr>
 						<th>Referência do Aquário</th>
 						<th>Endpoint</th>
+						<th>Temperatura Máxima</th>
+						<th>Temperatura Mínima</th>
 					</tr>
 				</thead>
 				<tr th:each="aquario : ${aquariumList}">
 					<td><span th:text="${aquario.aquariumName}"></span></td>
 					<td><span th:text="${aquario.aquariumEndpoint}"></span></td>
+					<td><span th:text="${aquario.maximumTemperature}"></span></td>
+					<td><span th:text="${aquario.minimumTemperature}"></span></td>
+					<td><a class="btn btn-info"
+						th:href="@{'/'+${aquario.user.user}+'/'+${aquario.aquariumName}}">Detalhes</a></td>
 				</tr>
 			</table>
 			<form action="newAquarium" method="post">
@@ -57,12 +63,36 @@
 						class="validation-error"
 						th:text="${AQUARIUM_ENDPOINT_CANNOT_BE_NULL}">...</p>
 				</div>
+				<div class="form-group">
+					<label for="MaxTemp">Temperatura máxima do Aquário</label> <input
+						type="number" class="form-control" id="tempMax" name="tempMax"
+						size="100" />
+					<p th:if="${MAXIMUM_TEMPERATUE_CANNOT_BE_EMPTY}"
+						class="validation-error"
+						th:text="${MAXIMUM_TEMPERATUE_CANNOT_BE_EMPTY}">...</p>
+				</div>
+				<div class="form-group">
+					<label for="MinTemp">Temperatura minima do Aquário</label> <input
+						type="number" class="form-control" id="tempMin" name="tempMin"
+						size="100" />
+					<p th:if="${MINIMUM_TEMPERATUE_CANNOT_BE_EMPTY}"
+						class="validation-error"
+						th:text="${MINIMUM_TEMPERATUE_CANNOT_BE_EMPTY}">...</p>
+				</div>
+				<div class="form-group">
+					<label for="Cicles">Ciclo Inicial</label> <select name="cicle"
+						class="form-control" id="cicle">
+						<option value="OFF">OFF</option>
+						<option value="ON">ON</option>
+						<option value="MAXIMUM">Máximo</option>
+					</select>
+				</div>
 				<button type="submit" class="btn btn-success">Criar</button>
 			</form>
 		</div>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://localhost:9000/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

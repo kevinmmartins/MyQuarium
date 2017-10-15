@@ -15,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.myaquarium.enums.AquariumCicle;
 import br.com.myaquarium.enums.MessagesUtil;
 import br.com.myaquarium.enums.UserConstants;
 import br.com.myaquarium.exceptions.AquariumException;
@@ -93,11 +94,14 @@ public class AquariumController {
 
 	@RequestMapping(value = "aquarium/aquariumList/newAquarium", method = RequestMethod.POST)
 	public ModelAndView newAquarium(@RequestParam("aquariumName") String aquariumName,
-			@RequestParam("endpoint") String endpoint, HttpSession session, RedirectAttributes redirectAttributes) {
+			@RequestParam("endpoint") String endpoint, @RequestParam("tempMax") Double tempMax,
+			@RequestParam("tempMin") Double tempMin, String cicle, HttpSession session,
+			RedirectAttributes redirectAttributes) {
 
 		User user = (User) session.getAttribute(UserConstants.User.getValue());
 		try {
-			aquariumService.saveNewAquarium(aquariumName, endpoint, user);
+			aquariumService.saveNewAquarium(aquariumName, endpoint, user, tempMax, tempMin,
+					AquariumCicle.valueOf(cicle));
 		} catch (AquariumException e) {
 			logger.error("Cannot create new aquarium", e);
 			redirectAttributes.addFlashAttribute(e.getException().toString(), e.getException().getMessageDescription());

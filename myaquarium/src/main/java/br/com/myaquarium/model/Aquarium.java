@@ -14,13 +14,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import br.com.myaquarium.enums.AquariumCicle;
+
 @Entity(name = "aquarium")
 public class Aquarium implements Serializable {
 
 	/**
 	 * Always change after make some change
 	 */
-	private static final long serialVersionUID = 9220736050882343066L;
+	private static final long serialVersionUID = -2430432920634045720L;
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -33,11 +36,17 @@ public class Aquarium implements Serializable {
 	private User user;
 	@Column(nullable = false)
 	private String aquariumEndpoint;
+	private Double maximumTemperature;
+	private Double minimumTemperature;
+	private AquariumCicle cicle;
 
-	public Aquarium(String aquariumName, String aquariumEndpoint, User user) {
+	public Aquarium(String aquariumName, String aquariumEndpoint, User user,Double maximumTemperature, Double minimumTemperature,AquariumCicle cicle) {
 		this.aquariumName = aquariumName;
 		this.aquariumEndpoint = aquariumEndpoint;
 		this.user = user;
+		this.maximumTemperature=maximumTemperature;
+		this.minimumTemperature=minimumTemperature;
+		this.cicle=cicle;
 	}
 
 	public Aquarium() {
@@ -86,6 +95,38 @@ public class Aquarium implements Serializable {
 
 	public void setAquariumData(Collection<AquariumData> aquariumData) {
 		this.aquariumData = aquariumData;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Double getMaximumTemperature() {
+		return maximumTemperature;
+	}
+
+	public void setMaximumTemperature(Double maximumTemperature) {
+		this.maximumTemperature = maximumTemperature;
+	}
+
+	public Double getMinimumTemperature() {
+		return minimumTemperature;
+	}
+
+	public void setMinimumTemperature(Double minimumTemperature) {
+		this.minimumTemperature = minimumTemperature;
+	}
+
+	public AquariumCicle getCicle() {
+		return cicle;
+	}
+
+	public void setCicle(AquariumCicle cicle) {
+		this.cicle = cicle;
 	}
 
 	@Override
