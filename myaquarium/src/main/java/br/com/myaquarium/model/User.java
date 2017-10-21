@@ -2,7 +2,6 @@ package br.com.myaquarium.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 
 import javax.persistence.CascadeType;
@@ -37,7 +36,7 @@ public class User implements Serializable {
 	private Boolean isActive = false;
 	@Column(nullable = false, unique = true)
 	private String user;
-	@OneToMany(mappedBy = "user", targetEntity=Aquarium.class, cascade= CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "user", targetEntity = Aquarium.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Collection<Aquarium> aquariumList = new HashSet<Aquarium>();
 
 	public User() {

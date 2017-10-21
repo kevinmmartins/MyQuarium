@@ -9,16 +9,15 @@ public class AquariumValidations implements Validator {
 	private AquariumRepository aquariumRepository;
 	private String aquariumName;
 	private String aquariumEndpoint;
-	private Double maxTemp;
-	private Double minTemp;
+	private Double temperature;
 
 	public AquariumValidations(String aquariumName, String aquariumEndpoint, AquariumRepository aquariumRepository,
-			Double maxTemp, Double minTemp) {
+			Double temperature) {
 		this.aquariumEndpoint = aquariumEndpoint;
 		this.aquariumName = aquariumName;
 		this.aquariumRepository = aquariumRepository;
-		this.maxTemp = maxTemp;
-		this.minTemp = minTemp;
+		this.temperature = temperature;
+
 	}
 
 	@Override
@@ -29,14 +28,14 @@ public class AquariumValidations implements Validator {
 		if (aquariumEndpoint == null || aquariumEndpoint.isEmpty()) {
 			throw new AquariumException(AquariumExceptions.AQUARIUM_ENDPOINT_CANNOT_BE_NULL);
 		}
+		if (aquariumRepository.findByAquariumEndpoint(aquariumEndpoint) != null) {
+			throw new AquariumException(AquariumExceptions.AQUARIUM_ENDPOINT_ALREADY_EXISTS);
+		}
 		if (aquariumRepository.findByAquariumName(aquariumName) != null) {
 			throw new AquariumException(AquariumExceptions.AQUARIUM_ALREADY_EXISTS);
 		}
-		if (maxTemp == null) {
-			throw new AquariumException(AquariumExceptions.MAXIMUM_TEMPERATUE_CANNOT_BE_EMPTY);
-		}
-		if (minTemp == null) {
-			throw new AquariumException(AquariumExceptions.MINIMUM_TEMPERATUE_CANNOT_BE_EMPTY);
+		if (temperature == null) {
+			throw new AquariumException(AquariumExceptions.TEMPERATURE_CANNOT_BE_EMPTY);
 		}
 
 	}

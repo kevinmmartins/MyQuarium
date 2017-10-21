@@ -84,7 +84,7 @@ public class AquariumController {
 	public ModelAndView doLogoff(HttpSession session) {
 		try {
 			logger.info("Removing session user");
-			session.removeAttribute(UserConstants.User.getValue());
+			session.invalidate();
 			logger.info("Session user removed");
 		} catch (Exception e) {
 			logger.error("Cannot remove the session user", e);
@@ -94,14 +94,12 @@ public class AquariumController {
 
 	@RequestMapping(value = "aquarium/aquariumList/newAquarium", method = RequestMethod.POST)
 	public ModelAndView newAquarium(@RequestParam("aquariumName") String aquariumName,
-			@RequestParam("endpoint") String endpoint, @RequestParam("tempMax") Double tempMax,
-			@RequestParam("tempMin") Double tempMin, String cicle, HttpSession session,
-			RedirectAttributes redirectAttributes) {
+			@RequestParam("endpoint") String endpoint, @RequestParam("temperature") Double temperature, String cicle,
+			HttpSession session, RedirectAttributes redirectAttributes) {
 
 		User user = (User) session.getAttribute(UserConstants.User.getValue());
 		try {
-			aquariumService.saveNewAquarium(aquariumName, endpoint, user, tempMax, tempMin,
-					AquariumCicle.valueOf(cicle));
+			aquariumService.saveNewAquarium(aquariumName, endpoint, user, temperature, AquariumCicle.valueOf(cicle));
 		} catch (AquariumException e) {
 			logger.error("Cannot create new aquarium", e);
 			redirectAttributes.addFlashAttribute(e.getException().toString(), e.getException().getMessageDescription());

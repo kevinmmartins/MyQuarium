@@ -23,7 +23,7 @@ public class Aquarium implements Serializable {
 	 * Always change after make some change
 	 */
 	private static final long serialVersionUID = -2430432920634045720L;
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -34,19 +34,17 @@ public class Aquarium implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user")
 	private User user;
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String aquariumEndpoint;
-	private Double maximumTemperature;
-	private Double minimumTemperature;
+	private Double temperature;
 	private AquariumCicle cicle;
 
-	public Aquarium(String aquariumName, String aquariumEndpoint, User user,Double maximumTemperature, Double minimumTemperature,AquariumCicle cicle) {
+	public Aquarium(String aquariumName, String aquariumEndpoint, User user, Double temperature, AquariumCicle cicle) {
 		this.aquariumName = aquariumName;
 		this.aquariumEndpoint = aquariumEndpoint;
 		this.user = user;
-		this.maximumTemperature=maximumTemperature;
-		this.minimumTemperature=minimumTemperature;
-		this.cicle=cicle;
+		this.temperature = temperature;
+		this.cicle = cicle;
 	}
 
 	public Aquarium() {
@@ -76,15 +74,7 @@ public class Aquarium implements Serializable {
 	public void setAquariumData(HashSet<AquariumData> aquariumData) {
 		this.aquariumData = aquariumData;
 	}
-
-	public User getUserId() {
-		return user;
-	}
-
-	public void setUserId(User userId) {
-		this.user = userId;
-	}
-
+	
 	public String getAquariumEndpoint() {
 		return aquariumEndpoint;
 	}
@@ -105,20 +95,12 @@ public class Aquarium implements Serializable {
 		this.user = user;
 	}
 
-	public Double getMaximumTemperature() {
-		return maximumTemperature;
+	public Double getTemperature() {
+		return temperature;
 	}
 
-	public void setMaximumTemperature(Double maximumTemperature) {
-		this.maximumTemperature = maximumTemperature;
-	}
-
-	public Double getMinimumTemperature() {
-		return minimumTemperature;
-	}
-
-	public void setMinimumTemperature(Double minimumTemperature) {
-		this.minimumTemperature = minimumTemperature;
+	public void setTemperature(Double temperature) {
+		this.temperature = temperature;
 	}
 
 	public AquariumCicle getCicle() {

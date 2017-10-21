@@ -1,7 +1,9 @@
 package br.com.myaquarium.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +23,10 @@ public class AquariumService {
 	@Autowired
 	private UserService userService;
 
-	public void saveNewAquarium(String aquariumName, String aquariumEndpoint, User user, Double maxTemp, Double minTemp,
+	public void saveNewAquarium(String aquariumName, String aquariumEndpoint, User user, Double temperature,
 			AquariumCicle cicle) throws Exception {
-		new AquariumValidations(aquariumName, aquariumEndpoint, aquariumRepository, maxTemp, minTemp).makeValidations();
-		Aquarium aquarium = new Aquarium(aquariumName, aquariumEndpoint, user, maxTemp, minTemp, cicle);
+		new AquariumValidations(aquariumName, aquariumEndpoint, aquariumRepository, temperature).makeValidations();
+		Aquarium aquarium = new Aquarium(aquariumName, aquariumEndpoint, user, temperature, cicle);
 		aquariumRepository.save(aquarium);
 		Collection<Aquarium> aquariumList = user.getAquariumList();
 		if (aquariumList != null) {
@@ -36,6 +38,18 @@ public class AquariumService {
 			user.setAquariumList(aquariumSet);
 			userService.saveUser(user);
 		}
+	}
+
+	public Aquarium getAquariumByEndpoint(String endpoint) {
+		return aquariumRepository.findByAquariumEndpoint(endpoint);
+	}
+
+	public List<Aquarium> getAllAquariuns() {
+		Iterable<Aquarium> aquariumIterator = aquariumRepository.findAll();
+		ArrayList<Aquarium> aquariumList = new ArrayList<>();
+		aquariumIterator.forEach(aquariumList::add);
+
+		return aquariumList;
 	}
 
 }

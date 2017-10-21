@@ -10,4 +10,6 @@ public interface AquariumRepository extends CrudRepository<Aquarium, Long> {
 
 	public Aquarium findByAquariumName(String aquariumName);
 
+	public Aquarium findByAquariumEndpoint(String aquariumEndpoint);
+
 }

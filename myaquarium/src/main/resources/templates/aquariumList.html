@@ -32,15 +32,13 @@
 					<tr>
 						<th>Referência do Aquário</th>
 						<th>Endpoint</th>
-						<th>Temperatura Máxima</th>
-						<th>Temperatura Mínima</th>
+						<th>Temperatura definida</th>
 					</tr>
 				</thead>
 				<tr th:each="aquario : ${aquariumList}">
 					<td><span th:text="${aquario.aquariumName}"></span></td>
 					<td><span th:text="${aquario.aquariumEndpoint}"></span></td>
-					<td><span th:text="${aquario.maximumTemperature}"></span></td>
-					<td><span th:text="${aquario.minimumTemperature}"></span></td>
+					<td><span th:text="${aquario.temperature}"></span></td>
 					<td><a class="btn btn-info"
 						th:href="@{'/aquariumInstance/'+${aquario.user.user}+'/'+${aquario.id}}">Detalhes</a></td>
 				</tr>
@@ -62,22 +60,16 @@
 					<p th:if="${AQUARIUM_ENDPOINT_CANNOT_BE_NULL}"
 						class="validation-error"
 						th:text="${AQUARIUM_ENDPOINT_CANNOT_BE_NULL}">...</p>
+					<p th:if="${AQUARIUM_ENDPOINT_ALREADY_EXISTS}"
+						class="validation-error"
+						th:text="${AQUARIUM_ENDPOINT_ALREADY_EXISTS}">...</p>
 				</div>
 				<div class="form-group">
-					<label for="MaxTemp">Temperatura máxima do Aquário</label> <input
-						type="number" class="form-control" id="tempMax" name="tempMax"
-						size="100" />
-					<p th:if="${MAXIMUM_TEMPERATUE_CANNOT_BE_EMPTY}"
-						class="validation-error"
-						th:text="${MAXIMUM_TEMPERATUE_CANNOT_BE_EMPTY}">...</p>
-				</div>
-				<div class="form-group">
-					<label for="MinTemp">Temperatura minima do Aquário</label> <input
-						type="number" class="form-control" id="tempMin" name="tempMin"
-						size="100" />
-					<p th:if="${MINIMUM_TEMPERATUE_CANNOT_BE_EMPTY}"
-						class="validation-error"
-						th:text="${MINIMUM_TEMPERATUE_CANNOT_BE_EMPTY}">...</p>
+					<label for="temperature">Temperatura que deve ser mantida</label> <input
+						type="text" class="form-control" id="temperature" placeholder="Exemplo : 18.9"
+						name="temperature" size="100" />
+					<p th:if="${TEMPERATURE_CANNOT_BE_EMPTY}" class="validation-error"
+						th:text="${TEMPERATURE_CANNOT_BE_EMPTY}">...</p>
 				</div>
 				<div class="form-group">
 					<label for="Cicles">Ciclo Inicial</label> <select name="cicle"
