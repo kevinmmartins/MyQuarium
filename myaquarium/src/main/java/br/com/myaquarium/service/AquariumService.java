@@ -52,4 +52,8 @@ public class AquariumService {
 		return aquariumList;
 	}
 
+	public void saveAquarium(Aquarium aquarium) {
+		aquariumRepository.save(aquarium);
+	}
+
 }

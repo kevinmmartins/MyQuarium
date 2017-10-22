@@ -3,12 +3,13 @@ package br.com.myaquarium.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.myaquarium.enums.AquariumCicle;
 
@@ -24,10 +25,15 @@ public class AquariumData implements Serializable {
 	private Long id;
 	private AquariumCicle aquariumCicle;
 	private Double temperature;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "aquariumName")
 	private Aquarium aquarium;
+	@DateTimeFormat
 	private LocalDateTime date;
+	
+	public AquariumData() {
+		
+	}
 
 	public Long getId() {
 		return id;
