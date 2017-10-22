@@ -21,7 +21,7 @@ public class AquariumApi {
 
 	@RequestMapping(value = "aquariumapi/{endpoint:.+}", method = RequestMethod.GET)
 	public AquariumTo getAquariumByEndpoint(@PathVariable("endpoint") String endpoint) {
-
+		
 		Aquarium aquariumByEndpoint = aquariumService.getAquariumByEndpoint(endpoint);
 
 		return new AquariumTo(aquariumByEndpoint);

@@ -22,7 +22,7 @@ import br.com.myaquarium.service.LoginService;
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class LoginController {
 
-	final static Logger logger = Logger.getLogger(LoginController.class);
+	private final static Logger logger = Logger.getLogger(LoginController.class);
 
 	@Autowired
 	private LoginService loginService;

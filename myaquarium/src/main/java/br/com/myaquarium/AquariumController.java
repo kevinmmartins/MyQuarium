@@ -26,7 +26,7 @@ import br.com.myaquarium.service.AquariumService;
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class AquariumController {
 
-	final static Logger logger = Logger.getLogger(AquariumController.class);
+	private final static Logger logger = Logger.getLogger(AquariumController.class);
 
 	@Autowired
 	private AquariumService aquariumService;

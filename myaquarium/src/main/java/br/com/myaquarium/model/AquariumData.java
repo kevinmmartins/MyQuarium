@@ -1,6 +1,7 @@
 package br.com.myaquarium.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,10 +23,11 @@ public class AquariumData implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private AquariumCicle aquariumCicle;
-	private Long temperature;
+	private Double temperature;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "aquariumId")
-	private Aquarium aquariumId;
+	@JoinColumn(name = "aquariumName")
+	private Aquarium aquarium;
+	private LocalDateTime date;
 
 	public Long getId() {
 		return id;
@@ -43,20 +45,32 @@ public class AquariumData implements Serializable {
 		this.aquariumCicle = aquariumCicle;
 	}
 
-	public Long getTemperature() {
+	public Aquarium getAquarium() {
+		return aquarium;
+	}
+
+	public void etAquarium(Aquarium aquarium) {
+		this.aquarium = aquarium;
+	}
+
+	public Double getTemperature() {
 		return temperature;
 	}
 
-	public void setTemperature(Long temperature) {
+	public void setTemperature(Double temperature) {
 		this.temperature = temperature;
 	}
 
-	public Aquarium getAquariumId() {
-		return aquariumId;
+	public LocalDateTime getDate() {
+		return date;
 	}
 
-	public void setAquariumId(Aquarium aquariumId) {
-		this.aquariumId = aquariumId;
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
+	public void setAquarium(Aquarium aquarium) {
+		this.aquarium = aquarium;
 	}
 
 	@Override

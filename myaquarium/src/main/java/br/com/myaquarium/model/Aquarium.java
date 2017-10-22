@@ -29,15 +29,15 @@ public class Aquarium implements Serializable {
 	private Long id;
 	@Column(unique = true, nullable = false)
 	private String aquariumName;
-	@OneToMany(mappedBy = "aquariumId", cascade = CascadeType.ALL)
-	private Collection<AquariumData> aquariumData = new HashSet<AquariumData>();
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user")
 	private User user;
-	@Column(nullable = false, unique=true)
+	@Column(nullable = false, unique = true)
 	private String aquariumEndpoint;
 	private Double temperature;
 	private AquariumCicle cicle;
+	@OneToMany(mappedBy = "aquarium", targetEntity = AquariumData.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Collection<AquariumData> aquariumData = new HashSet<AquariumData>();
 
 	public Aquarium(String aquariumName, String aquariumEndpoint, User user, Double temperature, AquariumCicle cicle) {
 		this.aquariumName = aquariumName;
@@ -74,7 +74,7 @@ public class Aquarium implements Serializable {
 	public void setAquariumData(HashSet<AquariumData> aquariumData) {
 		this.aquariumData = aquariumData;
 	}
-	
+
 	public String getAquariumEndpoint() {
 		return aquariumEndpoint;
 	}

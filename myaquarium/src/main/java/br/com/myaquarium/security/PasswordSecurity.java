@@ -12,7 +12,7 @@ import br.com.myaquarium.exceptions.enuns.UserExceptions;
 // TODO this class will be changed in future, we will use spring security
 public class PasswordSecurity {
 	
-	final static Logger logger = Logger.getLogger(PasswordSecurity.class);
+	private final static Logger logger = Logger.getLogger(PasswordSecurity.class);
 	
 	/**
 	 * This method is use to transform a string in a hash value

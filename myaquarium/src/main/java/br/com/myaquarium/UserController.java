@@ -18,7 +18,7 @@ import br.com.myaquarium.service.UserService;
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class UserController {
 
-	final static Logger logger = Logger.getLogger(UserController.class);
+	private final static Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;

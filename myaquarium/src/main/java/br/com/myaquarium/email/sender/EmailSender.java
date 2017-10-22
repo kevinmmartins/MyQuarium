@@ -8,7 +8,7 @@ import br.com.myaquarium.invite.EmailService;
 
 public class EmailSender {
 
-	final static Logger logger = Logger.getLogger(EmailSender.class);
+	private final static Logger logger = Logger.getLogger(EmailSender.class);
 	/**
 	 * This method is used to send a email to a new User
 	 * @param name
