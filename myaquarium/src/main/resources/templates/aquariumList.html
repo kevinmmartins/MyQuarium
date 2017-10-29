@@ -10,13 +10,14 @@
 <body class="container">
 	<div class="jumbotron" align="left" style="width: 100%;">
 		<div align="center"
-			style="margin-top: 2px; height: 50px; width: 100%;">
+			style="margin-top: 2px; height: 70px; width: 100%;">
 			<h2 class="welcome">Bem vindo</h2>
 			<h2 class="welcome" th:text="${name}"></h2>
 			<h2 class="welcome">!</h2>
 			<div align="right" class="welcome">
 				<form action="doLogoff" method="post">
 					<button class="btn btn-danger" type="submit">Logoff</button>
+					<a href="/aquarium/updateUser" class="btn btn-success">Atualizar</a>
 				</form>
 			</div>
 		</div>
@@ -66,8 +67,8 @@
 				</div>
 				<div class="form-group">
 					<label for="temperature">Temperatura que deve ser mantida</label> <input
-						type="text" class="form-control" id="temperature" placeholder="Exemplo : 18.9"
-						name="temperature" size="100" />
+						type="text" class="form-control" id="temperature"
+						placeholder="Exemplo : 18.9" name="temperature" size="100" />
 					<p th:if="${TEMPERATURE_CANNOT_BE_EMPTY}" class="validation-error"
 						th:text="${TEMPERATURE_CANNOT_BE_EMPTY}">...</p>
 				</div>

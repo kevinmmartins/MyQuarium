@@ -16,7 +16,6 @@ import br.com.myaquarium.validations.UserValidations;
 @Service
 public class UserService {
 
-
 	@Autowired
 	private UserRepository userRepository;
 
@@ -29,9 +28,29 @@ public class UserService {
 		EmailSender.sendEmail(name, email);
 
 	}
-	
+
 	public void saveUser(User user) {
 		userRepository.save(user);
+	}
+
+	public void updateUser(User user, String email, String password, String name, String lastName)
+			throws NoSuchAlgorithmException, UnsupportedEncodingException, UserException {
+
+		if (email != null && !email.isEmpty()) {
+			user.setEmail(email);
+		}
+		if (password != null && !password.isEmpty()) {
+			user.setPassword(PasswordSecurity.transformPassword(password));
+		}
+		if (name != null && !name.isEmpty()) {
+			user.setFirstName(name);
+		}
+		if (lastName != null && !lastName.isEmpty()) {
+			user.setLastName(lastName);
+		}
+
+		userRepository.save(user);
+
 	}
 
 }
