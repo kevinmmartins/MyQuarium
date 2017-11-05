@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta http-equiv="refresh" content="300" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>MyQuarium</title>
 <link href="http://localhost:9000/bootstrap/css/bootstrap.min.css"
@@ -15,10 +16,59 @@
 			<h2 class="welcome" th:text="${name}"></h2>
 			<h2 class="welcome">!</h2>
 			<div align="right" class="welcome">
-				<form action="doLogoff" method="post">
+				<form action="/aquarium/aquariumList/doLogoff" method="post">
 					<button class="btn btn-danger" type="submit">Logoff</button>
+					<a class="btn btn-success" th:href="@{'/aquarium/back'}">Voltar</a>
 				</form>
 			</div>
+		</div>
+	</div>
+	<div class="jumbotron" align="center"
+		style="margin-top: 5px; width: 100%;">
+		<div align="center">
+			<h2 class="welcome">Informações Gerais</h2>
+			<p th:if="${AQUARIUM_DATA_IS_EMPTY}" class="validation-error"
+				th:text="${AQUARIUM_DATA_IS_EMPTY}">...</p>
+			<table th:if="${aquariumGeneral}" class="table table-hover">
+				<tr>
+					<th>Número de registros</th>
+					<th>Temperatura máxima</th>
+					<th>Temperatura mínima</th>
+					<th>Temperatura média</th>
+					<th>Ultima atualização</th>
+				</tr>
+				<tr>
+					<td><span th:text="${aquariumGeneral.dataNumber}"></span></td>
+					<td><span th:text="${aquariumGeneral.maxTemp}"></span></td>
+					<td><span th:text="${aquariumGeneral.minTemp}"></span></td>
+					<td><span th:text="${aquariumGeneral.averageTemp}"></span></td>
+					<td><span th:text="${aquariumGeneral.lastUpdate}"></span></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="jumbotron" align="center"
+		style="margin-top: 5px; width: 100%;">
+		<div align="center">
+			<h2 class="welcome" th:text="${aquariumName}"></h2>
+			<p th:if="${AQUARIUM_DATA_IS_EMPTY}" class="validation-error"
+				th:text="${AQUARIUM_DATA_IS_EMPTY}">...</p>
+			<table th:if="${aquariumData}" class="table table-hover">
+				<thead>
+					<tr>
+						<th>Temperatura</th>
+						<th>Ciclo</th>
+						<th>Data</th>
+					</tr>
+				</thead>
+				<tr th:each="data : ${aquariumData}">
+					<td><span th:text="${data.temperature}"></span></td>
+					<td><span th:text="${data.aquariumCicle}"></span></td>
+					<td><span th:text="${data.dateInString}"></span></td>
+					<td><a class="btn btn-danger"
+						th:href="@{'/aquariumData/delete/'+${data.id}}" th:method="delete">Deletar</a></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 	<script

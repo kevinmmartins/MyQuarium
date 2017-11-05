@@ -53,6 +53,20 @@ public class AquariumController {
 
 		return new ModelAndView("redirect:aquariumList/" + user.getUser());
 	}
+	
+	@RequestMapping(value = "aquarium/back", method = RequestMethod.GET)
+	public ModelAndView returnAquariumList(HttpSession session, Model model,
+			RedirectAttributes redirectAttributes) {
+
+		User user = (User) session.getAttribute(UserConstants.User.getValue());
+
+		if (user == null) {
+			logger.info("Session user is null");
+			return new ModelAndView("redirect:/");
+		}
+
+		return new ModelAndView("redirect:aquariumList/" + user.getUser());
+	}
 
 	@RequestMapping(value = "aquarium/aquariumList/{username:.+}", method = RequestMethod.GET)
 	public ModelAndView manageAquarium(@PathVariable("username") String username, HttpSession session, Model model) {
@@ -61,10 +75,6 @@ public class AquariumController {
 
 		if (user == null) {
 			logger.info("Session user is null");
-			return new ModelAndView("redirect:/");
-		}
-		if (!user.getUser().equals(username)) {
-			logger.info("Invalid username, session user has the username: " + user.getUser());
 			return new ModelAndView("redirect:/");
 		}
 		if (user.getAquariumList() != null && user.getAquariumList().size() > 0) {

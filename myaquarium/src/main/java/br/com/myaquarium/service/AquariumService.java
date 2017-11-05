@@ -56,4 +56,8 @@ public class AquariumService {
 		aquariumRepository.save(aquarium);
 	}
 
+	public Aquarium getAquariumById(Long aquariumId) {
+		return aquariumRepository.findOne(aquariumId);
+	}
+
 }

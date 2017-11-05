@@ -2,12 +2,14 @@ package br.com.myaquarium.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,9 +32,11 @@ public class AquariumData implements Serializable {
 	private Aquarium aquarium;
 	@DateTimeFormat
 	private LocalDateTime date;
-	
+	@Transient
+	private String dateInString;
+
 	public AquariumData() {
-		
+
 	}
 
 	public Long getId() {
@@ -55,7 +59,7 @@ public class AquariumData implements Serializable {
 		return aquarium;
 	}
 
-	public void etAquarium(Aquarium aquarium) {
+	public void getAquarium(Aquarium aquarium) {
 		this.aquarium = aquarium;
 	}
 
@@ -77,6 +81,12 @@ public class AquariumData implements Serializable {
 
 	public void setAquarium(Aquarium aquarium) {
 		this.aquarium = aquarium;
+	}
+
+	public String getDateInString() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		dateInString = this.date.format(formatter);
+		return dateInString;
 	}
 
 	@Override

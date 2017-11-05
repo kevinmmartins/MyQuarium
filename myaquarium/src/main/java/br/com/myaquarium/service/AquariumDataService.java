@@ -1,8 +1,10 @@
 package br.com.myaquarium.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,45 @@ public class AquariumDataService {
 			aquarium.setAquariumData(aquariumDataSet);
 			aquariumService.saveAquarium(aquarium);
 		}
+	}
+
+	public Collection<AquariumData> getAquariumData(Long aquariumId) {
+		Aquarium aquarium = aquariumService.getAquariumById(aquariumId);
+		if (aquarium == null) {
+			return null;
+		}
+		Collection<AquariumData> aquariumData = aquarium.getAquariumData();
+		if (aquariumData == null || aquariumData.size() == 0) {
+			return null;
+		}
+
+		List<AquariumData> aquariumInList = new ArrayList<>(aquariumData);
+
+		aquariumInList.sort((a, b) -> {
+			if (a.getDate().isAfter(b.getDate())) {
+				return -1;
+			}
+			if (a.getDate().isBefore(b.getDate())) {
+				return 1;
+			}
+			return 0;
+		});
+
+		return aquariumInList;
+
+	}
+
+	public AquariumData getAquariumDataById(Long aquariumDataId) {
+		return aquariumDataRepository.findOne(aquariumDataId);
+
+	}
+
+	public void delete(AquariumData aquariumDataById) {
+		Aquarium aquarium = aquariumDataById.getAquarium();
+		aquarium.getAquariumData().remove(aquariumDataById);
+		aquariumService.saveAquarium(aquarium);
+		aquariumDataRepository.delete(aquariumDataById);
+
 	}
 
 }
