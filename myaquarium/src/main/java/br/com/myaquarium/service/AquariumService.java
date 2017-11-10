@@ -72,4 +72,22 @@ public class AquariumService {
 		aquariumRepository.delete(aquarium);
 	}
 
+	public User deleteAquarium(Long aquarium) {
+		Aquarium aq = aquariumRepository.findOne(aquarium);
+		if (aq != null) {
+			Collection<AquariumData> aquariumData = aq.getAquariumData();
+			if (aquariumData != null && aquariumData.size() > 0) {
+				aquariumData.forEach(data -> aquariumDataService.deleteAquariumData(data));
+			}
+			User user = aq.getUser();
+			user.getAquariumList().remove(aq);
+			aquariumRepository.delete(aq);
+			userService.saveUser(user);
+
+			return user;
+		}
+
+		return null;
+	}
+
 }

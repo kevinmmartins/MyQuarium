@@ -138,4 +138,20 @@ public class AquariumController {
 		return new ModelAndView("redirect:/aquarium/" + user.getUser());
 	}
 
+	@RequestMapping(value = "delete/{aquariumId}", method = RequestMethod.GET)
+	public ModelAndView deleteAquarium(@PathVariable("aquariumId") Long aquariumId, Model model, HttpSession session) {
+		User user = (User) session.getAttribute(UserConstants.User.getValue());
+		try {
+			logger.info("Deleting aquarium");
+			User userUpdated = aquariumService.deleteAquarium(aquariumId);
+			logger.info("Updating session user");
+			session.setAttribute("user", userUpdated);
+			logger.info("Session user updated");
+			logger.info("Aquarium deleted");
+		} catch (Exception e) {
+			logger.error("Cannot delete aquarium", e);
+		}
+		return new ModelAndView("redirect:/aquarium/" + user.getUser());
+	}
+
 }
