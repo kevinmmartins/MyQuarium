@@ -150,6 +150,7 @@ public class AquariumController {
 			logger.info("Aquarium deleted");
 		} catch (Exception e) {
 			logger.error("Cannot delete aquarium", e);
+			logger.error("Some problem happens");
 		}
 		return new ModelAndView("redirect:/aquarium/" + user.getUser());
 	}
