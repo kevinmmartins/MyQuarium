@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.myaquarium.enums.AquariumCicle;
 import br.com.myaquarium.model.Aquarium;
+import br.com.myaquarium.model.AquariumData;
 import br.com.myaquarium.model.User;
 import br.com.myaquarium.repository.AquariumRepository;
 import br.com.myaquarium.validations.AquariumValidations;
@@ -22,6 +23,9 @@ public class AquariumService {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private AquariumDataService aquariumDataService;
 
 	public void saveNewAquarium(String aquariumName, String aquariumEndpoint, User user, Double temperature,
 			AquariumCicle cicle) throws Exception {
@@ -58,6 +62,14 @@ public class AquariumService {
 
 	public Aquarium getAquariumById(Long aquariumId) {
 		return aquariumRepository.findOne(aquariumId);
+	}
+
+	public void deleteAquarium(Aquarium aquarium) {
+		Collection<AquariumData> aquariumData = aquarium.getAquariumData();
+		if (aquariumData != null && aquariumData.size() > 0) {
+			aquariumData.forEach(data -> aquariumDataService.deleteAquariumData(data));
+		}
+		aquariumRepository.delete(aquarium);
 	}
 
 }

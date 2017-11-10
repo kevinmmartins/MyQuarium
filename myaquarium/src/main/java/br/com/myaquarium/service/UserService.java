@@ -2,12 +2,14 @@ package br.com.myaquarium.service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.myaquarium.email.sender.EmailSender;
 import br.com.myaquarium.exceptions.UserException;
+import br.com.myaquarium.model.Aquarium;
 import br.com.myaquarium.model.User;
 import br.com.myaquarium.repository.UserRepository;
 import br.com.myaquarium.security.PasswordSecurity;
@@ -18,6 +20,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private AquariumService aquariumService;
 
 	public void saveNewUser(String email, String password, String user, String name, String lastName)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, UserException {
@@ -50,6 +55,21 @@ public class UserService {
 		}
 
 		userRepository.save(user);
+
+	}
+
+	public void deleteUser(User user) throws Exception {
+
+		try {
+			Collection<Aquarium> aquariumList = user.getAquariumList();
+			if (aquariumList != null && aquariumList.size() > 0) {
+				aquariumList.forEach(aquarium -> aquariumService.deleteAquarium(aquarium));
+			}
+			userRepository.delete(user);
+
+		} catch (Exception e) {
+			throw e;
+		}
 
 	}
 

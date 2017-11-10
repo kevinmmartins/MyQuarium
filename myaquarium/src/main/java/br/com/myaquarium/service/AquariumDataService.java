@@ -84,4 +84,8 @@ public class AquariumDataService {
 
 	}
 
+	public void deleteAquariumData(AquariumData data) {
+		aquariumDataRepository.delete(data);
+	}
+
 }

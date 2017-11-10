@@ -21,6 +21,7 @@ import br.com.myaquarium.enums.UserConstants;
 import br.com.myaquarium.exceptions.AquariumException;
 import br.com.myaquarium.model.User;
 import br.com.myaquarium.service.AquariumService;
+import br.com.myaquarium.service.UserService;
 
 @Controller
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
@@ -30,6 +31,9 @@ public class AquariumController {
 
 	@Autowired
 	private AquariumService aquariumService;
+
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping("aquarium")
 	public String index() {
@@ -53,10 +57,9 @@ public class AquariumController {
 
 		return new ModelAndView("redirect:aquariumList/" + user.getUser());
 	}
-	
+
 	@RequestMapping(value = "aquarium/back", method = RequestMethod.GET)
-	public ModelAndView returnAquariumList(HttpSession session, Model model,
-			RedirectAttributes redirectAttributes) {
+	public ModelAndView returnAquariumList(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 
 		User user = (User) session.getAttribute(UserConstants.User.getValue());
 
@@ -100,6 +103,20 @@ public class AquariumController {
 			logger.error("Cannot remove the session user", e);
 		}
 		return new ModelAndView("redirect:/");
+	}
+
+	@RequestMapping(value = "aquarium/aquariumList/deleteUser", method = RequestMethod.POST)
+	public ModelAndView deleteUser(HttpSession session) {
+		User user = (User) session.getAttribute(UserConstants.User.getValue());
+		try {
+			logger.info("delete user");
+			userService.deleteUser(user);
+			logger.info("User deleted");
+			return new ModelAndView("redirect:/");
+		} catch (Exception e) {
+			logger.error("Cannot remove the session user", e);
+		}
+		return new ModelAndView("redirect:/aquarium/" + user.getUser());
 	}
 
 	@RequestMapping(value = "aquarium/aquariumList/newAquarium", method = RequestMethod.POST)
