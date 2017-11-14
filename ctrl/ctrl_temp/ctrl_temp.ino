@@ -13,7 +13,7 @@ volatile int aquecPower = 0, resfrPower = 0;
 void setup()
 {
   TCCR2B = (TCCR2B & 0b11111000) | 0x07;
-  Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(ctrlAquecPin, OUTPUT);
   pinMode(ctrlResfrPin, OUTPUT);
   
@@ -44,7 +44,7 @@ void loop()
   
   ctrlResfr ();
 
-  Serial.println("----------------------");
+  /*Serial.println("----------------------");
   Serial.print("ctrlTemp: ");
   Serial.print(operacao);
   Serial.print(":");
@@ -60,7 +60,7 @@ void loop()
   Serial.print(digitalRead(b2));
   Serial.print(digitalRead(b1));
   Serial.println(digitalRead(b0));
-  delay (500);
+  delay (500);*/
 
 }
 
