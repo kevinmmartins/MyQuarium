@@ -191,7 +191,7 @@ void loop() {
     filtroAtual = decodeCtrlFiltro();
 
   //Envio dos valores por Serial (remover quando o sistema estiver completo) -------
-    Serial.println("---------------");
+    /*Serial.println("---------------");
     Serial.print("tempSet: ");
     Serial.println(tempSet);
     Serial.print("filtroSet: ");
@@ -225,7 +225,7 @@ void loop() {
     Serial.println(" - - - - - - - ");
     Serial.print("tempoAtual: ");
     Serial.println(tempoAtual);
-    delay(300);
+    delay(300);*/
   
   //Fim do sistema de controle;
 }
