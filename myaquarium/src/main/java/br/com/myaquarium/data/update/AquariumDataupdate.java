@@ -41,11 +41,15 @@ public class AquariumDataupdate {
 
 	private void updateAquariumData(Aquarium aquarium) throws AquariumDataException {
 		RestTemplate restTemplate = new RestTemplate();
-		AquariumDataJson aquariumJson;
+		AquariumDataJson aquariumJson = null;
 		if (aquariumDataUpdateConfig.getConfIsEnable().equals(Boolean.TRUE)) {
-			aquariumJson = restTemplate.getForObject(
-					aquarium.getAquariumEndpoint() + "/" + aquariumDataUpdateConfig.getUriPattern(),
-					AquariumDataJson.class);
+			try {
+				aquariumJson = restTemplate.getForObject(
+						"http://" + aquarium.getAquariumEndpoint() + aquariumDataUpdateConfig.getUriPattern(),
+						AquariumDataJson.class);
+			} catch (Exception e) {
+				logger.error("Cannot get information",e);
+			}
 		} else {
 			aquariumJson = restTemplate.getForObject(aquariumDataUpdateConfig.getUriPattern(), AquariumDataJson.class);
 		}
