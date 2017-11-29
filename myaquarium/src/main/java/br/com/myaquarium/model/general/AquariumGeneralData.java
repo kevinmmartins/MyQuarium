@@ -36,8 +36,8 @@ public class AquariumGeneralData {
 				}
 				return 0;
 			});
-			this.minTemp = tempList.get(0);
-			this.maxTemp = tempList.get(tempList.size() - 1);
+			this.maxTemp = tempList.get(0);
+			this.minTemp = tempList.get(tempList.size() - 1);
 			DoubleStream mapToDouble = tempList.stream().mapToDouble(a -> a);
 			this.averageTemp = mapToDouble.average().getAsDouble();
 			DecimalFormat df = new DecimalFormat("#.##");
