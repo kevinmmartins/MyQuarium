@@ -1,0 +1,9 @@
+language: java
+sudo: true
+dist: trusty
+jdk:
+  - oraclejdk8
+install: true
+script: mvn clean package -DskipTests=true
+before_install:
+  - chmod +x mvnw
