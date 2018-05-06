@@ -1,4 +1,4 @@
-#MyQuarium -Smart system for monitoring aquariums
+# MyQuarium -Smart system for monitoring aquariums
 
 [![Build Status](https://travis-ci.org/kevinmmartins/MyQuarium.svg?branch=master)](https://travis-ci.org/kevinmmartins/MyQuarium)
 
