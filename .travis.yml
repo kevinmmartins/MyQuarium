@@ -1,0 +1,8 @@
+language: java
+sudo: true
+before_script: cd myaquarium
+dist: trusty
+jdk:
+  - oraclejdk8
+install: true
+script: mvn clean package -DskipTests=true
