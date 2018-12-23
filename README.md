@@ -1,5 +1,6 @@
 # MyQuarium -Smart system for monitoring aquariums
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f880239d5ba44879ad3a929ae1e2f72c)](https://app.codacy.com/app/kevinmmartins/MyQuarium?utm_source=github.com&utm_medium=referral&utm_content=kevinmmartins/MyQuarium&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/kevinmmartins/MyQuarium.svg?branch=master)](https://travis-ci.org/kevinmmartins/MyQuarium)
 
 ![alt text](https://user-images.githubusercontent.com/20428703/38178013-eacee016-35df-11e8-9c3b-47bc253d7c9d.png)
