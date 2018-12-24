@@ -72,7 +72,7 @@ public class AquariumDataService {
 	}
 
 	public AquariumData getAquariumDataById(Long aquariumDataId) {
-		return aquariumDataRepository.findOne(aquariumDataId);
+		return aquariumDataRepository.findById(aquariumDataId);
 
 	}
 

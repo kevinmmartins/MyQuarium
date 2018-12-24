@@ -2,8 +2,8 @@ package br.com.myaquarium.enums;
 
 public enum MessagesUtil {
 
-	AQUARIUM_LIST_IS_EMPTY("Usuário não tem aquários cadastrados"), AQUARIUM_DATA_IS_EMPTY(
-			"Não existem dados para o aquário selecionado");
+	AQUARIUM_LIST_IS_EMPTY("Usuario nao tem aquarios cadastrados"), AQUARIUM_DATA_IS_EMPTY(
+			"Nao existem dados para o aquario selecionado");
 
 	private String data;
 

@@ -61,7 +61,7 @@ public class AquariumService {
 	}
 
 	public Aquarium getAquariumById(Long aquariumId) {
-		return aquariumRepository.findOne(aquariumId);
+		return aquariumRepository.findById(aquariumId);
 	}
 
 	public void deleteAquarium(Aquarium aquarium) {
@@ -73,7 +73,7 @@ public class AquariumService {
 	}
 
 	public User deleteAquarium(Long aquarium) {
-		Aquarium aq = aquariumRepository.findOne(aquarium);
+		Aquarium aq = aquariumRepository.findById(aquarium);
 		if (aq != null) {
 			Collection<AquariumData> aquariumData = aq.getAquariumData();
 			if (aquariumData != null && aquariumData.size() > 0) {
