@@ -1,0 +1,32 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/myaquarium"
+  schedule:
+    interval: daily
+    time: "08:00"
+  open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: org.springframework.boot:spring-boot-devtools
+    versions:
+    - 2.4.2
+    - 2.4.3
+    - 2.4.4
+  - dependency-name: org.springframework.boot:spring-boot-starter-thymeleaf
+    versions:
+    - 2.4.2
+    - 2.4.3
+    - 2.4.4
+  - dependency-name: org.springframework.boot:spring-boot-starter-data-jpa
+    versions:
+    - 2.4.2
+    - 2.4.3
+    - 2.4.4
+  - dependency-name: org.springframework.boot:spring-boot-starter-web
+    versions:
+    - 2.4.2
+    - 2.4.3
+    - 2.4.4
+  - dependency-name: mysql:mysql-connector-java
+    versions:
+    - 8.0.23
